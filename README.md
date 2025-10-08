@@ -1,2 +1,129 @@
-# naturalization_quiz
-Shuffle the 100 question and quiz the user.
+# Naturalization Quiz
+
+A command-line quiz application to help you study for the US Naturalization Test. Practice all 100 civics questions required for the citizenship exam.
+
+## Features
+
+- 100 official USCIS civics questions
+- Randomized question order for varied practice
+- Fuzzy matching to check your answers
+- Visual feedback showing valid answers and your closest match
+- Track your score throughout the quiz
+- Exit anytime and see your current progress
+
+## Installation
+
+### Windows
+
+#### Step 1: Install uv
+Open PowerShell or Command Prompt and run:
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Close and reopen your terminal for the changes to take effect.
+
+#### Step 2: Install Python using uv
+```powershell
+uv python install 3.12
+```
+
+#### Step 3: Extract the ZIP file
+Extract the downloaded ZIP file to a location of your choice (e.g., `C:\Users\YourName\naturalization-quiz`).
+
+#### Step 4: Navigate to the repository
+Open a new terminal and navigate to the extracted folder:
+```powershell
+cd C:\Users\YourName\naturalization-quiz
+```
+(Replace with your actual path)
+
+#### Step 5: Create a virtual environment
+```powershell
+uv venv
+```
+
+#### Step 6: Activate the virtual environment
+```powershell
+.venv\Scripts\activate
+```
+
+You should see `(.venv)` appear at the beginning of your command prompt.
+
+#### Step 7: Install the package
+```powershell
+pip install -e .
+```
+
+### macOS/Linux
+
+```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install Python
+uv python install 3.12
+
+# Navigate to the extracted repository
+cd /path/to/naturalization-quiz
+
+# Create and activate virtual environment
+uv venv
+source .venv/bin/activate
+
+# Install the package
+pip install -e .
+```
+
+## Usage
+
+After installation, simply run:
+```bash
+naturalization-quiz
+```
+
+### How to Play
+
+1. The quiz will present you with questions in random order
+2. Type your answer and press Enter
+3. Review the table showing valid answers and your match
+4. Confirm if your answer was correct (y/n)
+5. Type `exit` at any time to quit and see your score
+6. Complete all 100 questions to get your final score
+
+### Passing Score
+
+You need to answer at least 80 out of 100 questions correctly to pass!
+
+## Running the Quiz Later
+
+To run the quiz after installation:
+
+**Windows:**
+```powershell
+cd C:\Users\YourName\naturalization-quiz
+.venv\Scripts\activate
+naturalization-quiz
+```
+
+**macOS/Linux:**
+```bash
+cd /path/to/naturalization-quiz
+source .venv/bin/activate
+naturalization-quiz
+```
+
+## Development
+
+To install development dependencies (Black and isort):
+```bash
+pip install -e ".[dev]"
+```
+
+## License
+
+MIT
+
+## About
+
+This quiz is based on the official USCIS 100 civics questions for the naturalization test. Good luck with your citizenship exam preparation!
