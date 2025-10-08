@@ -4,12 +4,15 @@ A command-line quiz application to help you study for the US Naturalization Test
 
 ## Features
 
-- 100 official USCIS civics questions
+- 100 official USCIS civics questions (as of Oct 2025)
 - Randomized question order for varied practice
 - Fuzzy matching to check your answers
 - Visual feedback showing valid answers and your closest match
 - Track your score throughout the quiz
 - Exit anytime and see your current progress
+
+> [!NOTE]
+> Questions 20, 23, 43, and 44 contain **New York-specific** answers (NY Senators, Representative, Governor, and capital). If you live in a different state, you'll need to customize these answers in the `naturalization_quiz/quiz.py` file.
 
 ## Installation
 
@@ -112,3 +115,9 @@ MIT
 ## About
 
 This quiz is based on the official USCIS 100 civics questions for the naturalization test. Good luck with your citizenship exam preparation!
+
+## Credits
+
+The 100 civics questions are from the official [USCIS Civics Test](https://www.uscis.gov/citizenship/find-study-materials-and-resources/study-for-the-test). 
+
+Note: Questions 20, 23, 43, and 44 contain New York-specific answers. You may need to customize these for your state.
