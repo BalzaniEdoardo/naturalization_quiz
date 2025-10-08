@@ -70,6 +70,37 @@ After installation, simply run:
 naturalization-quiz
 ```
 
+By default, this uses the included questions file with New York-specific answers.
+
+### Using Custom Questions
+
+You can create your own questions file or customize the existing one for your state:
+
+#### Option 1: Modify the included file
+1. Navigate to your installation: `naturalization_quiz/questions_NY_state_oct_2025.yaml`
+2. Edit questions 20, 23, 43, and 44 with your state's information
+3. Save and run the quiz normally
+
+#### Option 2: Create a custom YAML file
+1. Copy the format from `questions_NY_state_oct_2025.yaml`
+2. Create your own file (e.g., `questions_CA_state.yaml`)
+3. Run the quiz with your custom file:
+```bash
+naturalization-quiz --questions path/to/questions_CA_state.yaml
+```
+
+**YAML format example:**
+```yaml
+"20. Who is one of your state's U.S. Senators now?":
+  - "Alex Padilla"
+  - "Laphonza Butler"
+
+"23. Name your U.S. Representative.":
+  - "Your Representative Name"
+```
+
+Each question is a key with a list of acceptable answers. You can have multiple valid answers for each question.
+
 ### How to Play
 
 1. The quiz will present you with questions in random order
