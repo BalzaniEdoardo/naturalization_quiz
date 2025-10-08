@@ -5,9 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "naturalization-quiz"
 version = "0.1.0"
-description = "A simple program to test your knowledge of the 100 questions for the naturalization."
+description = "A CLI quiz for US naturalization test questions"
 readme = "README.md"
 requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+]
 authors = [
     {name = "Edoardo Balzani", email = "ebalzani87@gmail.com"}
 ]
@@ -22,6 +25,9 @@ dev = [
     "black",
     "isort",
 ]
+
+[project.scripts]
+naturalization-quiz = "naturalization_quiz.quiz:main"
 
 [project.urls]
 Homepage = "https://github.com/BalzaniEdoardo/naturalization_quiz"

@@ -1,4 +1,5 @@
 import difflib
+import numpy as np
 
 # Questions 1-20 with answers as lists
 questions_1_100 = {
@@ -465,10 +466,7 @@ def create_answer_table(answers: list[str], best_match: str, this_answer: str):
     return table
 
 
-if __name__ == "__main__":
-
-    import numpy as np
-
+def main():
     question_order = np.random.permutation(np.arange(100))
     qa_list = [(q, a) for q, a in questions_1_100.items()]
     count_correct = 0
@@ -504,3 +502,6 @@ if __name__ == "__main__":
             print(f"\nYou passed the test!")
         else:
             print(f"\nYou failed! Never give up brother :D")
+
+if __name__ == "__main__":
+    main()
