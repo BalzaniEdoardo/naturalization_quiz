@@ -15,45 +15,30 @@ A command-line quiz application to help you study for the US Naturalization Test
 
 ### Windows
 
-#### Step 1: Install uv
-Open PowerShell or Command Prompt and run:
+#### Step 1: Extract the ZIP file
+Extract the downloaded ZIP file to a location of your choice (e.g., `C:\Users\YourName\naturalization-quiz`).
+
+#### Step 2: Install uv
+Open PowerShell and run:
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-Close and reopen your terminal for the changes to take effect.
+Close and reopen PowerShell for the changes to take effect.
 
-#### Step 2: Install Python using uv
-```powershell
-uv python install 3.12
-```
-
-#### Step 3: Extract the ZIP file
-Extract the downloaded ZIP file to a location of your choice (e.g., `C:\Users\YourName\naturalization-quiz`).
-
-#### Step 4: Navigate to the repository
-Open a new terminal and navigate to the extracted folder:
+#### Step 3: Install and run
+Navigate to the extracted folder:
 ```powershell
 cd C:\Users\YourName\naturalization-quiz
 ```
 (Replace with your actual path)
 
-#### Step 5: Create a virtual environment
+Then copy and paste the following command:
 ```powershell
-uv venv
+uv python install 3.12; uv venv; .venv\Scripts\activate; pip install -e .; naturalization-quiz
 ```
 
-#### Step 6: Activate the virtual environment
-```powershell
-.venv\Scripts\activate
-```
-
-You should see `(.venv)` appear at the beginning of your command prompt.
-
-#### Step 7: Install the package
-```powershell
-pip install -e .
-```
+This will install Python, create a virtual environment, install the package, and start the quiz!
 
 ### macOS/Linux
 
