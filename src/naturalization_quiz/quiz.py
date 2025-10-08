@@ -1,8 +1,8 @@
 import difflib
-import numpy as np
 from pathlib import Path
 import yaml
 import argparse
+import random
 
 
 def find_similar(answers: list[str], user_answer: str):
@@ -73,7 +73,8 @@ def main():
     questions_dict = load_questions(args.questions)
     num_questions = len(questions_dict)
 
-    question_order = np.random.permutation(np.arange(num_questions))
+    question_order = list(range(num_questions))
+    random.shuffle(question_order)
     qa_list = [(q, a) for q, a in questions_dict.items()]
     count_correct = 0
     abort = False
@@ -87,7 +88,8 @@ def main():
 
     for num, question_num in enumerate(question_order):
         current_question, current_answers = qa_list[question_num]
-        print(f"Question #{num + 1} of {num_questions}:")
+        perc = round(count_correct / num  * 100, 1) if num != 0 else 0
+        print(f"Question #{num + 1} of {num_questions} - # correct: {count_correct}, aka {perc}%")
         print(f"{current_question}")
         user_answer = input()
         if user_answer == "exit":
