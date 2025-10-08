@@ -16,9 +16,6 @@ A command-line quiz application to help you study for the US Naturalization Test
 - Track your score throughout the quiz
 - Exit anytime and see your current progress
 
-> [!WARNING]
-> Questions 20, 23, 43, and 44 contain **New York-specific** answers (NY Senators, Representative, Governor, and capital). If you live in a different state, you'll need to customize these answers in the `naturalization_quiz/quiz.py` file.
-
 ## Installation
 
 ### Windows
