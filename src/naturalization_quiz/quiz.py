@@ -1,434 +1,8 @@
 import difflib
 import numpy as np
-
-# Questions 1-20 with answers as lists
-questions_1_100 = {
-    "1. What is the supreme law of the land?": ["the Constitution"],
-    "2. What does the Constitution do?": [
-        "sets up the government",
-        "defines the government",
-        "protects basic rights of Americans",
-    ],
-    "3. The idea of self-government is in the first three words of the Constitution. What are these words?": [
-        "We the People"
-    ],
-    "4. What is an amendment?": [
-        "a change to the Constitution",
-        "an addition to the Constitution",
-    ],
-    "5. What do we call the first ten amendments to the Constitution?": [
-        "the Bill of Rights"
-    ],
-    "6. What is one right or freedom from the First Amendment?": [
-        "speech",
-        "religion",
-        "assembly",
-        "press",
-        "petition the government",
-    ],
-    "7. How many amendments does the Constitution have?": ["twenty-seven (27)"],
-    "8. What did the Declaration of Independence do?": [
-        "announced our independence from Great Britain",
-        "declared our independence from Great Britain",
-        "said that the United States is free from Great Britain",
-    ],
-    "9. What are two rights in the Declaration of Independence?": [
-        "life",
-        "liberty",
-        "pursuit of happiness",
-    ],
-    "10. What is freedom of religion?": [
-        "You can practice any religion, or not practice a religion"
-    ],
-    "11. What is the economic system in the United States?": [
-        "capitalist economy",
-        "market economy",
-    ],
-    "12. What is the rule of law?": [
-        "Everyone must follow the law",
-        "Leaders must obey the law",
-        "Government must obey the law",
-        "No one is above the law",
-    ],
-    "13. Name one branch or part of the government.": [
-        "Congress",
-        "legislative",
-        "President",
-        "executive",
-        "the courts",
-        "judicial",
-    ],
-    "14. What stops one branch of government from becoming too powerful?": [
-        "checks and balances",
-        "separation of powers",
-    ],
-    "15. Who is in charge of the executive branch?": ["the President"],
-    "16. Who makes federal laws?": [
-        "Congress",
-        "Senate and House of Representatives",
-        "U.S. or national legislature",
-    ],
-    "17. What are the two parts of the U.S. Congress?": [
-        "the Senate and House of Representatives"
-    ],
-    "18. How many U.S. Senators are there?": ["one hundred (100)"],
-    "19. We elect a U.S. Senator for how many years?": ["six (6)"],
-    "20. Who is one of your state's U.S. Senators now?": [
-        "Chuck Schumer",
-        "Kirsten Gillibrand",
-    ],
-    "21. The House of Representatives has how many voting members?": [
-        "four hundred thirty-five (435)"
-    ],
-    "22. We elect a U.S. Representative for how many years?": ["two (2)"],
-    "23. Name your U.S. Representative.": ["Jerrold Nadler", "Jerry Nadler"],
-    "24. Who does a U.S. Senator represent?": ["all people of the state"],
-    "25. Why do some states have more Representatives than other states?": [
-        "because of the state's population",
-        "because they have more people",
-        "because some states have more people",
-    ],
-    "26. We elect a President for how many years?": ["four (4)"],
-    "27. In what month do we vote for President?": ["November"],
-    "28. What is the name of the President of the United States now?": [
-        "Donald Trump",
-        "Trump",
-    ],
-    "29. What is the name of the Vice President of the United States now?": [
-        "JD Vance",
-        "Vance",
-    ],
-    "30. If the President can no longer serve, who becomes President?": [
-        "the Vice President"
-    ],
-    "31. If both the President and the Vice President can no longer serve, who becomes President?": [
-        "the Speaker of the House"
-    ],
-    "32. Who is the Commander in Chief of the military?": ["the President"],
-    "33. Who signs bills to become laws?": ["the President"],
-    "34. Who vetoes bills?": ["the President"],
-    "35. What does the President's Cabinet do?": ["advises the President"],
-    "36. What are two Cabinet-level positions?": [
-        "Secretary of Agriculture",
-        "Secretary of Commerce",
-        "Secretary of Defense",
-        "Secretary of Education",
-        "Secretary of Energy",
-        "Secretary of Health and Human Services",
-        "Secretary of Homeland Security",
-        "Secretary of Housing and Urban Development",
-        "Secretary of the Interior",
-        "Secretary of Labor",
-        "Secretary of State",
-        "Secretary of Transportation",
-        "Secretary of the Treasury",
-        "Secretary of Veterans Affairs",
-        "Attorney General",
-        "Vice President",
-    ],
-    "37. What does the judicial branch do?": [
-        "reviews laws",
-        "explains laws",
-        "resolves disputes (disagreements)",
-        "decides if a law goes against the Constitution",
-    ],
-    "38. What is the highest court in the United States?": ["the Supreme Court"],
-    "39. How many justices are on the Supreme Court?": ["nine (9)"],
-    "40. Who is the Chief Justice of the United States now?": [
-        "John Roberts",
-        "John G. Roberts Jr.",
-    ],
-    "41. Under our Constitution, some powers belong to the federal government. What is one power of the federal government?": [
-        "to print money",
-        "to declare war",
-        "to create an army",
-        "to make treaties",
-    ],
-    "42. Under our Constitution, some powers belong to the states. What is one power of the states?": [
-        "provide schooling and education",
-        "provide protection (police)",
-        "provide safety (fire departments)",
-        "give a driver's license",
-        "approve zoning and land use",
-    ],
-    "43. Who is the Governor of your state now?": ["Kathy Hochul"],
-    "44. What is the capital of your state?": ["Albany"],
-    "45. What are the two major political parties in the United States?": [
-        "Democratic and Republican"
-    ],
-    "46. What is the political party of the President now?": [
-        "Republican",
-        "Republican Party",
-    ],
-    "47. What is the name of the Speaker of the House of Representatives now?": [
-        "Mike Johnson"
-    ],
-    "48. There are four amendments to the Constitution about who can vote. Describe one of them.": [
-        "Citizens eighteen (18) and older can vote",
-        "You don't have to pay (a poll tax) to vote",
-        "Any citizen can vote (Women and men can vote)",
-        "A male citizen of any race (can vote)",
-    ],
-    "49. What is one responsibility that is only for United States citizens?": [
-        "serve on a jury",
-        "vote in a federal election",
-    ],
-    "50. Name one right only for United States citizens.": [
-        "vote in a federal election",
-        "run for federal office",
-    ],
-    "51. What are two rights of everyone living in the United States?": [
-        "freedom of expression",
-        "freedom of speech",
-        "freedom of assembly",
-        "freedom to petition the government",
-        "freedom of religion",
-        "the right to bear arms",
-    ],
-    "52. What do we show loyalty to when we say the Pledge of Allegiance?": [
-        "the United States",
-        "the flag",
-    ],
-    "53. What is one promise you make when you become a United States citizen?": [
-        "give up loyalty to other countries",
-        "defend the Constitution and laws of the United States",
-        "obey the laws of the United States",
-        "serve in the U.S. military (if needed)",
-        "serve (do important work for) the nation (if needed)",
-        "be loyal to the United States",
-    ],
-    "54. How old do citizens have to be to vote for President?": [
-        "eighteen (18) and older"
-    ],
-    "55. What are two ways that Americans can participate in their democracy?": [
-        "vote",
-        "join a political party",
-        "help with a campaign",
-        "join a civic group",
-        "join a community group",
-        "give an elected official your opinion on an issue",
-        "call Senators and Representatives",
-        "publicly support or oppose an issue or policy",
-        "run for office",
-        "write to a newspaper",
-    ],
-    "56. When is the last day you can send in federal income tax forms?": ["April 15"],
-    "57. When must all men register for the Selective Service?": [
-        "at age eighteen (18)",
-        "between eighteen (18) and twenty-six (26)",
-    ],
-    "58. What is one reason colonists came to America?": [
-        "freedom",
-        "political liberty",
-        "religious freedom",
-        "economic opportunity",
-        "practice their religion",
-        "escape persecution",
-    ],
-    "59. Who lived in America before the Europeans arrived?": [
-        "American Indians",
-        "Native Americans",
-    ],
-    "60. What group of people was taken to America and sold as slaves?": [
-        "Africans",
-        "people from Africa",
-    ],
-    "61. Why did the colonists fight the British?": [
-        "because of high taxes (taxation without representation)",
-        "because the British army stayed in their houses (boarding, quartering)",
-        "because they didn't have self-government",
-    ],
-    "62. Who wrote the Declaration of Independence?": ["Thomas Jefferson"],
-    "63. When was the Declaration of Independence adopted?": ["July 4, 1776"],
-    "64. There were 13 original states. Name three.": [
-        "New Hampshire",
-        "Massachusetts",
-        "Rhode Island",
-        "Connecticut",
-        "New York",
-        "New Jersey",
-        "Pennsylvania",
-        "Delaware",
-        "Maryland",
-        "Virginia",
-        "North Carolina",
-        "South Carolina",
-        "Georgia",
-    ],
-    "65. What happened at the Constitutional Convention?": [
-        "The Constitution was written",
-        "The Founding Fathers wrote the Constitution",
-    ],
-    "66. When was the Constitution written?": ["1787"],
-    "67. The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.": [
-        "James Madison",
-        "Alexander Hamilton",
-        "John Jay",
-        "Publius",
-    ],
-    "68. What is one thing Benjamin Franklin is famous for?": [
-        "U.S. diplomat",
-        "oldest member of the Constitutional Convention",
-        "first Postmaster General of the United States",
-        "writer of Poor Richard's Almanack",
-        "started the first free libraries",
-    ],
-    "69. Who is the Father of Our Country?": ["George Washington"],
-    "70. Who was the first President?": ["George Washington"],
-    "71. What territory did the United States buy from France in 1803?": [
-        "the Louisiana Territory",
-        "Louisiana",
-    ],
-    "72. Name one war fought by the United States in the 1800s.": [
-        "War of 1812",
-        "Mexican-American War",
-        "Civil War",
-        "Spanish-American War",
-    ],
-    "73. Name the U.S. war between the North and the South.": [
-        "the Civil War",
-        "the War between the States",
-    ],
-    "74. Name one problem that led to the Civil War.": [
-        "slavery",
-        "economic reasons",
-        "states' rights",
-    ],
-    "75. What was one important thing that Abraham Lincoln did?": [
-        "freed the slaves (Emancipation Proclamation)",
-        "saved (or preserved) the Union",
-        "led the United States during the Civil War",
-    ],
-    "76. What did the Emancipation Proclamation do?": [
-        "freed the slaves",
-        "freed slaves in the Confederacy",
-        "freed slaves in the Confederate states",
-        "freed slaves in most Southern states",
-    ],
-    "77. What did Susan B. Anthony do?": [
-        "fought for women's rights",
-        "fought for civil rights",
-    ],
-    "78. Name one war fought by the United States in the 1900s.": [
-        "World War I",
-        "World War II",
-        "Korean War",
-        "Vietnam War",
-        "Gulf (Persian Gulf) War",
-    ],
-    "79. Who was President during World War I?": ["Woodrow Wilson"],
-    "80. Who was President during the Great Depression and World War II?": [
-        "Franklin Roosevelt"
-    ],
-    "81. Who did the United States fight in World War II?": [
-        "Japan, Germany, and Italy"
-    ],
-    "82. Before he was President, Eisenhower was a general. What war was he in?": [
-        "World War II"
-    ],
-    "83. During the Cold War, what was the main concern of the United States?": [
-        "Communism"
-    ],
-    "84. What movement tried to end racial discrimination?": [
-        "civil rights (movement)"
-    ],
-    "85. What did Martin Luther King, Jr. do?": [
-        "fought for civil rights",
-        "worked for equality for all Americans",
-    ],
-    "86. What major event happened on September 11, 2001, in the United States?": [
-        "Terrorists attacked the United States"
-    ],
-    "87. Name one American Indian tribe in the United States.": [
-        "Cherokee",
-        "Navajo",
-        "Sioux",
-        "Chippewa",
-        "Choctaw",
-        "Pueblo",
-        "Apache",
-        "Iroquois",
-        "Creek",
-        "Blackfeet",
-        "Seminole",
-        "Cheyenne",
-        "Arawak",
-        "Shawnee",
-        "Mohegan",
-        "Huron",
-        "Oneida",
-        "Lakota",
-        "Crow",
-        "Teton",
-        "Hopi",
-        "Inuit",
-    ],
-    "88. Name one of the two longest rivers in the United States.": [
-        "Missouri River",
-        "Mississippi River",
-    ],
-    "89. What ocean is on the West Coast of the United States?": ["Pacific Ocean"],
-    "90. What ocean is on the East Coast of the United States?": ["Atlantic Ocean"],
-    "91. Name one U.S. territory.": [
-        "Puerto Rico",
-        "U.S. Virgin Islands",
-        "American Samoa",
-        "Northern Mariana Islands",
-        "Guam",
-    ],
-    "92. Name one state that borders Canada.": [
-        "Maine",
-        "New Hampshire",
-        "Vermont",
-        "New York",
-        "Pennsylvania",
-        "Ohio",
-        "Michigan",
-        "Minnesota",
-        "North Dakota",
-        "Montana",
-        "Idaho",
-        "Washington",
-        "Alaska",
-    ],
-    "93. Name one state that borders Mexico.": [
-        "California",
-        "Arizona",
-        "New Mexico",
-        "Texas",
-    ],
-    "94. What is the capital of the United States?": ["Washington, D.C."],
-    "95. Where is the Statue of Liberty?": [
-        "New York (Harbor)",
-        "Liberty Island",
-        "New Jersey",
-        "near New York City",
-        "on the Hudson River",
-    ],
-    "96. Why does the flag have 13 stripes?": [
-        "because there were 13 original colonies",
-        "because the stripes represent the original colonies",
-    ],
-    "97. Why does the flag have 50 stars?": [
-        "because there is one star for each state",
-        "because each star represents a state",
-        "because there are 50 states",
-    ],
-    "98. What is the name of the national anthem?": ["The Star-Spangled Banner"],
-    "99. When do we celebrate Independence Day?": ["July 4"],
-    "100. Name two national U.S. holidays.": [
-        "New Year's Day",
-        "Martin Luther King, Jr. Day",
-        "Presidents' Day",
-        "Memorial Day",
-        "Independence Day",
-        "Labor Day",
-        "Columbus Day",
-        "Veterans Day",
-        "Thanksgiving",
-        "Christmas",
-    ],
-}
+from pathlib import Path
+import yaml
+import argparse
 
 
 def find_similar(answers: list[str], user_answer: str):
@@ -445,39 +19,75 @@ def create_answer_table(answers: list[str], best_match: str, this_answer: str):
     matching[idx] = this_answer
     table = "+" + "-" * col_len + "+" + "-" * col_len + "+"
     table += (
-        "\n| Valid Answers"
-        + " " * (col_len - 14)
-        + "| Best Match"
-        + " " * (col_len - 11)
-        + "|"
+            "\n| Valid Answers"
+            + " " * (col_len - 14)
+            + "| Best Match"
+            + " " * (col_len - 11)
+            + "|"
     )
     table += "\n+" + "-" * col_len + "+" + "-" * col_len + "+"
 
     for a, m in zip(answers, matching):
         entry_line = (
-            f"\n| {a}"
-            + " " * (col_len - len(a) - 1)
-            + f"| {m}"
-            + " " * (col_len - len(m) - 1)
-            + "|"
+                f"\n| {a}"
+                + " " * (col_len - len(a) - 1)
+                + f"| {m}"
+                + " " * (col_len - len(m) - 1)
+                + "|"
         )
         table += entry_line
     table += "\n+" + "-" * col_len + "-" + "-" * col_len + "+"
     return table
 
 
+def load_questions(yaml_path: Path) -> dict:
+    """Load questions from a YAML file."""
+    with open(yaml_path, 'r') as f:
+        questions = yaml.safe_load(f)
+    return questions
+
+
 def main():
-    question_order = np.random.permutation(np.arange(100))
-    qa_list = [(q, a) for q, a in questions_1_100.items()]
+    parser = argparse.ArgumentParser(
+        description="US Naturalization Test Quiz"
+    )
+
+    # Get the default path relative to the package
+    default_yaml = Path(__file__).parent / "questions_NY_state_oct_2025.yaml"
+
+    parser.add_argument(
+        '--questions',
+        type=Path,
+        default=default_yaml,
+        help=f'Path to questions YAML file (default: {default_yaml.name})'
+    )
+
+    args = parser.parse_args()
+
+    # Load questions from YAML
+    if not args.questions.exists():
+        print(f"Error: Questions file not found at {args.questions}")
+        print("Please provide a valid path using --questions")
+        return
+
+    questions_dict = load_questions(args.questions)
+    num_questions = len(questions_dict)
+
+    question_order = np.random.permutation(np.arange(num_questions))
+    qa_list = [(q, a) for q, a in questions_dict.items()]
     count_correct = 0
     abort = False
+
     print(
-        "\n\nWelcome to the 100 question quiz!\n\nAnswer 'exit' to quit at any time. Press 'enter' to continue."
+        f"\n\nWelcome to the {num_questions} question quiz!\n\n"
+        f"Using questions from: {args.questions.name}\n"
+        "Answer 'exit' to quit at any time. Press 'enter' to continue."
     )
     input()
+
     for num, question_num in enumerate(question_order):
         current_question, current_answers = qa_list[question_num]
-        print(f"Question #{num+1} of {100}:")
+        print(f"Question #{num + 1} of {num_questions}:")
         print(f"{current_question}")
         user_answer = input()
         if user_answer == "exit":
@@ -496,12 +106,15 @@ def main():
                 break
             else:
                 print("Please enter either 'y' or 'n'.")
+
     if not abort:
-        print(f"\nYour final score is {count_correct}/100.")
-        if count_correct > 80:
+        print(f"\nYour final score is {count_correct}/{num_questions}.")
+        passing_score = int(num_questions * 0.8)
+        if count_correct >= passing_score:
             print(f"\nYou passed the test!")
         else:
             print(f"\nYou failed! Never give up brother :D")
+
 
 if __name__ == "__main__":
     main()

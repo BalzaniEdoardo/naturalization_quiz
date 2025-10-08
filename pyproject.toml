@@ -10,6 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
     "numpy",
+    "pyyaml"
 ]
 authors = [
     {name = "Edoardo Balzani", email = "ebalzani87@gmail.com"}
@@ -31,3 +32,6 @@ naturalization-quiz = "naturalization_quiz.quiz:main"
 
 [project.urls]
 Homepage = "https://github.com/BalzaniEdoardo/naturalization_quiz"
+
+[tool.setuptools.package-data]
+naturalization_quiz = ["*.yaml"]
